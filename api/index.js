@@ -16,13 +16,26 @@ const dashRoutes = require("./routes/dashRoutes");
 // --- APP INITIALIZATION ---
 const app = express();
 
+const allowedOrigins = [
+  'http://localhost:3000', // Your local frontend
+  process.env.FRONTEND_URL    // Your production frontend URL from .env
+];
 
-// --- CORE MIDDLEWARE ---
-// Enable CORS for frontend requests, allowing cookies to be sent.
+// Enable CORS with dynamic origin checking.
 app.use(cors({
-  origin: "http://localhost:3000", // The URL of your React frontend
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
   credentials: true,
 }));
+// --- CORE MIDDLEWARE ---
+// Enable CORS for frontend requests, allowing cookies to be sent.
 
 // Enable the express.json middleware to parse JSON request bodies.
 app.use(express.json());
