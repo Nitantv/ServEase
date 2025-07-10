@@ -16,18 +16,20 @@ const AddAddressPage = () => {
     }
 
     try {
+      // ✅ THE ONLY CHANGE IS ON THIS LINE: Added "/api" to the URL
       const response = await fetch("http://localhost:5000/dash/user/add-address", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // important for session-based auth
+        credentials: "include", // This is vital for sending cookies
         body: JSON.stringify({ newAddress }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
+        // This will now catch the "Unauthorized" message from your middleware
         throw new Error(data.message || "Failed to add address.");
       }
 

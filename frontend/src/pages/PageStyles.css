@@ -1,163 +1,487 @@
-/* General Styling */
+/* ========================================================================
+   1. GLOBAL LAYOUT OVERRIDE FOR DASHBOARD
+   ======================================================================== */
+body:has(.dashboard-layout) {
+  display: block;
+  justify-content: initial;
+  align-items: initial;
+}
+
+/* ========================================================================
+   2. ORIGINAL STYLES (For Login, Signup, etc.)
+   ======================================================================== */
 body {
-  background-color: #121212; /* Black background */
-  color: white;
+  background-color: #0a0a23;
+  color: #f0f0f0;
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   margin: 0;
 }
 
-/* Page Containers */
 .page-container {
   text-align: center;
   width: 100%;
-  max-width: 400px;
-  padding: 30px;
-  background-color: #1e1e1e; /* Dark Grey Box */
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
 }
 
-/* Form Elements */
+.form-box {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #1f2a48;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(255, 215, 0, 0.6); /* golden glow */
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Added spacing between input fields */
+  gap: 15px;
 }
 
-input, select, button {
+.role-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input, select {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #00ffff;
+  background-color: #1c1f3f;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+button {
   width: 100%;
   padding: 12px;
   border: none;
   border-radius: 5px;
   font-size: 16px;
-}
-
-input, select {
-  background-color: #333;
-  color: white;
-}
-
-button {
-  background-color: #007bff;
-  color: white;
+  background-color: #32cd32; /* lime green */
+  color: black;
   cursor: pointer;
   font-weight: bold;
-  margin-top: 10px; /* Space between buttons */
 }
 
 button:hover {
-  background-color: #0056b3;
-}
-input, select {
-  display: block;
-  width: 100%;
-  margin-bottom: 15px; /* Adds vertical spacing */
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: #333;
-  color: white;
-}
-/* Dashboard container */
-.dashboard {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background-color: #121212;
-  color: white;
+  background-color: #228b22;
 }
 
-/* Settings button position */
-.top-right {
-  position: fixed;
-  top: 15px;
-  right: 15px;
+.role-btn {
+  margin-bottom: 10px;
 }
 
-/* Styling for settings button */
-.settings-btn {
+.btn-link {
   background: none;
   border: none;
+  color: #ffd700; /* gold */
   cursor: pointer;
-  color: white;
-  font-size: 24px;
-  padding: 5px;
+  text-decoration: underline;
+  padding: 10px 0;
+  margin-top: 10px;
 }
 
-.settings-btn:hover {
+/* ========================================================================
+   3. DASHBOARD-SPECIFIC STYLES
+   ======================================================================== */
+
+.dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #555;
+}
+
+.dashboard-main {
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dashboard-layout .dropdown-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffd700;
+}
+
+.dashboard-layout .address-dropdown {
+  width: 250px;
+  background-color: #2f2f5f;
+  color: white;
+}
+
+.dashboard-layout .settings-section {
+  position: relative;
+}
+
+.dashboard-layout .settings-btn {
+  background: none;
+  color: #00ffff;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard-layout .dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background-color: #1f2a48;
+  border: 1px solid #ffd700;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.5);
+  width: 200px;
+  padding: 5px 0;
+  z-index: 100;
+}
+
+.dashboard-layout .option {
+  color: #ffffff;
+  background: none;
+  padding: 10px 15px;
+}
+.dashboard-layout .option:hover {
+  background-color: #2a2a5a;
+}
+
+/* ========================================================================
+   4. NEW CUSTOMER DASHBOARD STYLES
+   ======================================================================== */
+
+.customer-section {
+  width: 100%;
+}
+
+.worker-tabs {
+  display: flex;
+  gap: 10px;
+  border-bottom: 2px solid #444;
+  margin-bottom: 2rem;
+}
+
+.worker-tabs button {
+  width: auto;
+  padding: 10px 20px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: #ccc;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.worker-tabs button:hover {
+  background-color: #3a3a6a;
+  color: #ffd700;
+}
+
+.worker-tabs button.active {
+  color: #00ffff;
+  border-bottom-color: #00ffff;
+}
+
+.workers-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.worker-card {
+  background-color: #1f2a48;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #00e0d1;
+  box-shadow: 0 0 15px rgba(255, 255, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.worker-card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #32cd32;
+}
+
+.worker-card button {
+  margin-top: 1rem;
+}
+
+/* ========================================================================
+   5. NEW WORKER PROFILE PAGE STYLES
+   ======================================================================== */
+
+.worker-profile-layout {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #444;
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.worker-name {
+  font-size: 2.5rem;
+  margin: 0;
+  flex-grow: 1;
+  text-align: left;
+  color: #ffd700;
+}
+
+.profile-cost {
+  background-color: #1f2a48;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.profile-cost .detail-label {
+  display: block;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.profile-cost .detail-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #32cd32;
+}
+
+.profile-main {
+  flex-grow: 1;
+}
+
+.slots-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #ffd700;
+}
+
+.slots-address-subtitle {
+  display: block;
+  color: #aaa;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.time-chunks-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.time-chunk-btn {
+  width: auto;
+  min-width: 180px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 2px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.time-chunk-btn.available {
+  background-color: #32cd32;
+  border-color: #32cd32;
+}
+.time-chunk-btn.available:hover {
+  background-color: #228b22;
+}
+
+.time-chunk-btn.unavailable {
+  background-color: #f44336;
+  border-color: #f44336;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.time-chunk-btn.selected {
+  background-color: #0d1117;
+  color: #ffd700;
+  border-color: #ffd700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+  transform: scale(1.05);
+}
+
+.profile-footer {
+  text-align: center;
+  padding-top: 2rem;
+  margin-top: auto;
+}
+
+.calculated-cost {
+  background-color: #ffd700;
+  color: #000;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+.calculated-cost span {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.btn-continue {
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: #32cd32;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.btn-continue:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+.pending-booking-card {
+  background-color: #1f2a48;
+  border-left: 5px solid #ffd700;
+  padding: 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.pending-booking-card h4 {
+  margin-top: 0;
+  color: #ffd700;
+}
+
+.pending-booking-card p {
+  margin: 5px 0;
   color: #ccc;
 }
 
-/* Dropdown styling */
-.dropdown {
-  position: absolute;
-  top: 35px;  /* Adjusted position below the icon */
-  right: 0;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
-  z-index: 10;
+.btn-cancel-booking {
+  background-color: #f44336;
+  width: auto;
+  padding: 10px 20px;
+  color: white;
 }
 
-/* Style for dropdown options */
-.option {
-  background: none;
-  border: none;
-  width: 100%;
-  text-align: left;
-  padding: 8px 12px;
-  cursor: pointer;
-  font-size: 14px;
-  color: black;
+.btn-cancel-booking:hover {
+  background-color: #d32f2f;
 }
 
-.option:hover {
-  background: #f0f0f0;
+.date-selector {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.address-dropdown {
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  z-index: 1000;
-}
-
-.dropdown-label {
-  font-weight: bold;
+.date-selector label {
   margin-right: 10px;
+  font-weight: 600;
 }
 
-.address-section {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.date-selector select {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #1f2a48;
+  color: white;
+  border: 1px solid #ffd700;
+  font-size: 1rem;
 }
 
-.settings-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.option {
-  background: none;
-  border: none;
-  padding: 8px;
+.worker-bookings-section {
   width: 100%;
-  text-align: left;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #444;
+}
+
+.worker-bookings-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #00ffff;
+}
+
+.bookings-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.booking-info-card {
+  background-color: #1f2a48;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #ffd700;
+}
+
+.booking-info-card p {
+  margin: 0 0 10px 0;
+  color: #ccc;
+  line-height: 1.5;
+}
+
+.booking-info-card p:last-child {
+  margin-bottom: 0;
+}
+
+.booking-info-card strong {
+  color: #ffd700;
+  margin-right: 8px;
+}
+
+.btn-cancel-booking-small {
+  background: none;
+  border: none;
+  color: #ff4d4d;
   cursor: pointer;
+  text-decoration: underline;
+  padding: 5px;
+  margin-top: 10px;
+  float: right;
+  font-size: 0.9rem;
 }
 
-.option:hover {
-  background-color: #f0f0f0;
+.btn-cancel-booking-small:hover {
+  color: #ff1a1a;
 }
-
-
