@@ -33,7 +33,7 @@ const ChangeEmailPage = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/dash/user/email', {
+      const response = await fetch('/api/dash/user/email', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
