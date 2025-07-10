@@ -53,7 +53,14 @@ app.use((req, res, next) => {
 // We tell Express to use our imported route files for specific URL paths.
 app.use("/auth", authRoutes);
 app.use("/dash", dashRoutes);
-
+app.get("/env-check", (req, res) => {
+  res.json({
+    mongoUri: process.env.MONGO_URI ? "✅ Exists" : "❌ Missing",
+    jwtSecret: process.env.JWT_SECRET ? "✅ Exists" : "❌ Missing",
+    frontendUrl: process.env.FRONTEND_URL || "❌ Not Set",
+    vercelUrl: process.env.VERCEL_URL || "❌ Not Set"
+  });
+});
 
 // --- DATABASE CONNECTION ---
 // Check if essential .env variables are loaded before trying to connect.
