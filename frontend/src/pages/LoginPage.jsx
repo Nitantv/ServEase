@@ -19,7 +19,7 @@ const LoginPage = () => {
     }
   
     try {
-      const response = await fetch('http://localhost:5000/auth/login', {
+      const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -48,7 +48,7 @@ const LoginPage = () => {
   const handleLogout = () => {
     // This should be called from the dashboard's logout button
     localStorage.removeItem('userInfo');
-    fetch('http://localhost:5000/auth/logout', {
+    fetch('/api/auth/logout', {
       method: 'POST',
       credentials: 'include',
     }).then(() => {

@@ -52,25 +52,25 @@ const DashboardPage = () => {
       
       try {
         // Fetch addresses (relevant for all users)
-        const addressesRes = await fetch("http://localhost:5000/dash/user/addresses", { credentials: "include" });
+        const addressesRes = await fetch("/api/dash/user/addresses", { credentials: "include" });
         if (addressesRes.ok) {
           setAddresses((await addressesRes.json()).addresses || []);
         }
         
         // Fetch data specific to the user's role
         if (userInfo.role === 'Customer') {
-          const bookingsRes = await fetch("http://localhost:5000/dash/customer/my-bookings", { credentials: "include" });
+          const bookingsRes = await fetch("/api/dash/customer/my-bookings", { credentials: "include" });
           if (bookingsRes.ok) {
             setUpcomingBookings(await bookingsRes.json());
           }
         } else { // User is a Worker
           // Fetch the worker's professional profile
-          const profileRes = await fetch("http://localhost:5000/dash/worker/my-profile", { credentials: "include" });
+          const profileRes = await fetch("/api/dash/worker/my-profile", { credentials: "include" });
           if (profileRes.ok) {
             setWorkerProfile(await profileRes.json());
           }
           // Fetch the worker's upcoming bookings
-          const bookingsRes = await fetch("http://localhost:5000/dash/worker/my-bookings", { credentials: "include" });
+          const bookingsRes = await fetch("/api/dash/worker/my-bookings", { credentials: "include" });
           console.log(bookingsRes);
           if (bookingsRes.ok) {
             setUpcomingBookings(await bookingsRes.json());
@@ -95,7 +95,7 @@ const DashboardPage = () => {
     const fetchWorkers = async () => {
       setIsLoading(true);
       setWorkers([]);
-      const apiUrl = `http://localhost:5000/dash/workers?role=${activeTab}&address=${encodeURIComponent(selectedAddress)}`;
+      const apiUrl = `/api/dash/workers?role=${activeTab}&address=${encodeURIComponent(selectedAddress)}`;
       try {
         const response = await fetch(apiUrl, { credentials: "include" });
         if (!response.ok) throw new Error('Failed to fetch workers');
@@ -121,7 +121,7 @@ const DashboardPage = () => {
   const handleLogout = async () => {
     try {
       // 1. Tell the backend to clear the secure authentication cookie.
-      await fetch('http://localhost:5000/auth/logout', {
+      await fetch('/api/auth/logout', {
         method: 'POST',
         credentials: 'include',
       });
@@ -144,7 +144,7 @@ const DashboardPage = () => {
   const handleCancelBooking = async (bookingId) => {
     if (!window.confirm("Are you sure you want to cancel this booking?")) return;
     try {
-      const response = await fetch(`http://localhost:5000/dash/booking/${bookingId}`, {
+      const response = await fetch(`/api/dash/booking/${bookingId}`, {
         method: 'DELETE',
         credentials: 'include',
       });
