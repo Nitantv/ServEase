@@ -17,7 +17,9 @@ const dashRoutes = require("./routes/dashRoutes");
 const app = express();
 
 const allowedOrigins = [process.env.FRONTEND_URL, 'http://localhost:3000'];
-
+if (process.env.VERCEL_URL) {
+  allowedOrigins.push(`https://${process.env.VERCEL_URL}`);
+}
 app.use(cors({
   origin: (origin, callback) => {
     // Allow requests with no origin (like mobile apps or curl requests)
