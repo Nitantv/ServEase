@@ -4,9 +4,9 @@ console.log("\n\n\n✅✅✅ THE CORRECT dashRoutes.js FILE HAS BEEN LOADED ✅�
 console.log("\n\n\n✅✅✅ THE CORRECT dashRoutes.js FILE HAS BEEN LOADED ✅✅✅\n\n\n");
 const express = require("express");
 const mongoose = require("mongoose");
-const User = require("../models/User");
+const User = require("../models/User.js");
 const { verifyToken } = require("../utils.js");
-const Booking = require('../models/Booking');
+const Booking = require('../models/Booking.js');
 const router = express.Router();
 router.get("/test-route", verifyToken, (req, res) => {
   // If this route is reached, it will print to the console and send a success message.

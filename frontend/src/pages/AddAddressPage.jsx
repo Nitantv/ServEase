@@ -17,7 +17,7 @@ const AddAddressPage = () => {
 
     try {
       // ✅ THE ONLY CHANGE IS ON THIS LINE: Added "/api" to the URL
-      const response = await fetch("http://localhost:5000/dash/user/add-address", {
+      const response = await fetch("/api/dash/user/add-address", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
