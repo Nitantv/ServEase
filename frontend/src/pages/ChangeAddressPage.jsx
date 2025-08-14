@@ -31,7 +31,7 @@ const ChangeAddressPage = () => {
     }
 
     try {
-      const response = await fetch('/api/dash/user/address', {
+      const response = await fetch('http://localhost:5000/dash/user/address', {
         method: 'PUT', // Use PUT for updating data
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
