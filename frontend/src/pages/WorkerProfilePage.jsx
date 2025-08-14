@@ -69,8 +69,8 @@ const WorkerProfilePage = () => {
 
       try {
         const [profileRes, bookingsRes] = await Promise.all([
-          fetch(`http://localhost:5000/dash/worker/${workerId}`, { credentials: 'include' }),
-          fetch(`http://localhost:5000/dash/bookings/${workerId}?date=${selectedDate}`, { credentials: 'include' })
+          fetch(process.env.REACT_APP_BACKEND_URL+`/dash/worker/${workerId}`, { credentials: 'include' }),
+          fetch(process.env.REACT_APP_BACKEND_URL+`/dash/bookings/${workerId}?date=${selectedDate}`, { credentials: 'include' })
         ]);
 
         if (!profileRes.ok || !bookingsRes.ok) throw new Error('Failed to load worker data.');
@@ -138,7 +138,7 @@ const WorkerProfilePage = () => {
     setIsBooking(true);
     setError('');
     try {
-      const response = await fetch('http://localhost:5000/dash/book-slot', {
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL+'/dash/book-slot', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

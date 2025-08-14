@@ -57,7 +57,7 @@ router.post('/login', async (req, res) => {
     res.cookie("jwtToken", token, {
       httpOnly: true, // Makes the cookie inaccessible to client-side JavaScript
       secure: process.env.NODE_ENV === "production", // Only send over HTTPS in production
-      sameSite: "strict",
+      sameSite: "none",
       maxAge: 60 * 60 * 1000 // 1 hour
     });
 
@@ -132,7 +132,7 @@ router.post("/logout", (req, res) => {
   res.clearCookie("jwtToken", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
+    sameSite: "none",
   }).status(200).json({ message: "Logout successful" });
 });
 router.post("/reset-password", async (req, res) => {

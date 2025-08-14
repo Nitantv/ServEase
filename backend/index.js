@@ -70,6 +70,7 @@ if (!process.env.MONGO_URI || !process.env.JWT_SECRET) {
   process.exit(1); // Stop the server if environment variables are missing
 }
 
+
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB Connected"))
   .catch(err => {
@@ -81,4 +82,5 @@ mongoose.connect(process.env.MONGO_URI)
 // --- SERVER STARTUP ---
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+console.log(process.env.MONGO_URI)
 module.exports = app;
