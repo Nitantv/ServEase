@@ -85,7 +85,7 @@ const sendResetEmail = async (email, resetToken) => {
     from: process.env.EMAIL_USER,
     to: email,
     subject: "Password Reset Request",
-    text: `Click the link below to reset your password:\n\nhttp://localhost:3000/reset-password?token=${resetToken}`,
+    text: `Click the link below to reset your password:\n\n${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`,
   };
 
   await transporter.sendMail(mailOptions);
@@ -132,7 +132,7 @@ router.post("/logout", (req, res) => {
   res.clearCookie("jwtToken", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "none",
+    sameSite: "strict",
   }).status(200).json({ message: "Logout successful" });
 });
 router.post("/reset-password", async (req, res) => {
