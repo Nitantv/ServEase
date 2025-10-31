@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './StartPage.css';
+
 const ProjectName = "ServEase";
 
 // Image URLs for the new floating icons
 const broomImage = "/images/broom.jpeg";
-const ironImage = "/images/iron.png";
+const ironImage = "/images/ironimages.png";
 const hammerImage = "/images/hammer.png";
 
 const StartPage = () => {
@@ -70,7 +71,7 @@ const StartPage = () => {
         <div className="section" data-aos="zoom-in">
           <div className="divider" />
         </div>
-
+        
         <div className="section why-choose" data-aos="fade-up">
           <h2 className="section-title">Why Choose Us?</h2>
           <ul className="why-list">
@@ -81,8 +82,16 @@ const StartPage = () => {
             <li>Secure payments and customer support you can count on.</li>
           </ul>
         </div>
+        <div>
+      {/* Your page content here */}
+      
+      <footer style={{ textAlign: 'center', padding: '10px', color: '#555' }}>
+        © 2025 Nitant Vaidya
+      </footer>
+    </div>
       </main>
     </div>
+    
   );
 };
 

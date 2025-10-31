@@ -33,8 +33,8 @@ const UpdateWorkerDetailsPage = () => {
       setIsLoading(true);
       try {
         const [profileRes, addressesRes] = await Promise.all([
-          fetch("http://localhost:5000/dash/worker/my-profile", { credentials: "include" }),
-          fetch("http://localhost:5000/dash/user/addresses", { credentials: "include" })
+          fetch(process.env.REACT_APP_BACKEND_URL+"/dash/worker/my-profile", { credentials: "include" }),
+          fetch(process.env.REACT_APP_BACKEND_URL+"/dash/user/addresses", { credentials: "include" })
         ]);
         if (!profileRes.ok || !addressesRes.ok) throw new Error("Could not load initial data.");
 
@@ -133,7 +133,7 @@ const UpdateWorkerDetailsPage = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/dash/worker/profile', {
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL+'/dash/worker/profile', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
